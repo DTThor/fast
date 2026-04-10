@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Play, Square, X, Droplets, ChevronDown } from 'lucide-react';
+import { Play, Square, X, Droplets, ChevronDown, Pencil, Check } from 'lucide-react';
 import { useApp } from '../../store/AppContext';
 import CircularTimer from './CircularTimer';
 import HealthStageBar from './HealthStageBar';
@@ -16,7 +16,30 @@ export default function TimerPage() {
   const [showProtocols, setShowProtocols] = useState(false);
   const [selectedProtocol, setSelectedProtocol] = useState<FastingProtocolId>(settings.defaultProtocol);
   const [note, setNote] = useState('');
+  const [editingStart, setEditingStart] = useState(false);
+  const [editStartValue, setEditStartValue] = useState('');
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Format a timestamp as a local datetime-local input value
+  function toDatetimeLocal(ts: number): string {
+    const d = new Date(ts);
+    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+    return d.toISOString().slice(0, 16);
+  }
+
+  function openEditStart() {
+    if (!currentFast) return;
+    setEditStartValue(toDatetimeLocal(currentFast.startTime));
+    setEditingStart(true);
+  }
+
+  function saveEditStart() {
+    const ts = new Date(editStartValue).getTime();
+    if (!isNaN(ts) && ts < Date.now()) {
+      dispatch({ type: 'UPDATE_CURRENT_START', payload: ts });
+    }
+    setEditingStart(false);
+  }
 
   // Clock tick
   useEffect(() => {
@@ -66,10 +89,42 @@ export default function TimerPage() {
         <h1 className="text-2xl font-bold text-slate-800 dark:text-white">
           {currentFast ? 'Fasting in Progress' : 'Start Your Fast'}
         </h1>
-        {currentFast && (
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-            Started {formatDateTime(currentFast.startTime)} · Goal {formatTime(currentFast.startTime + targetMs)}
-          </p>
+        {currentFast && !editingStart && (
+          <div className="flex items-center justify-center gap-1.5 mt-1">
+            <p className="text-sm text-slate-500 dark:text-slate-400">
+              Started {formatDateTime(currentFast.startTime)} · Goal {formatTime(currentFast.startTime + targetMs)}
+            </p>
+            <button
+              onClick={openEditStart}
+              className="p-1 text-slate-400 hover:text-orange-500 transition-colors"
+              title="Edit start time"
+            >
+              <Pencil className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        )}
+        {currentFast && editingStart && (
+          <div className="flex items-center justify-center gap-2 mt-2">
+            <input
+              type="datetime-local"
+              value={editStartValue}
+              max={toDatetimeLocal(Date.now())}
+              onChange={(e) => setEditStartValue(e.target.value)}
+              className="text-sm px-3 py-1.5 rounded-xl bg-white dark:bg-slate-800 border border-orange-300 dark:border-orange-700 text-slate-800 dark:text-white outline-none focus:ring-2 focus:ring-orange-500"
+            />
+            <button
+              onClick={saveEditStart}
+              className="p-1.5 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-colors"
+            >
+              <Check className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => setEditingStart(false)}
+              className="p-1.5 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-600 dark:text-slate-300 rounded-lg transition-colors"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
         )}
       </div>
 
