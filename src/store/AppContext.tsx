@@ -14,7 +14,8 @@ type Action =
   | { type: 'UPDATE_SETTINGS'; payload: Partial<AppSettings> }
   | { type: 'DELETE_FAST'; payload: string }
   | { type: 'UPDATE_FAST_NOTE'; payload: { id: string; note: string } }
-  | { type: 'UPDATE_CURRENT_START'; payload: number };
+  | { type: 'UPDATE_CURRENT_START'; payload: number }
+  | { type: 'UPDATE_CURRENT_TARGET'; payload: number };
 
 function reducer(state: AppState, action: Action): AppState {
   switch (action.type) {
@@ -86,6 +87,9 @@ function reducer(state: AppState, action: Action): AppState {
     case 'UPDATE_CURRENT_START':
       if (!state.currentFast) return state;
       return { ...state, currentFast: { ...state.currentFast, startTime: action.payload } };
+    case 'UPDATE_CURRENT_TARGET':
+      if (!state.currentFast) return state;
+      return { ...state, currentFast: { ...state.currentFast, targetHours: action.payload } };
     default:
       return state;
   }
