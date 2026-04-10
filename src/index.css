@@ -41,6 +41,14 @@
   transform-origin: 50% 50%;
 }
 
+/* Confetti fall */
+@keyframes confettiFall {
+  0%   { transform: translateY(-16px) translateX(0)              rotate(var(--rotate, 0deg)); opacity: 0.85; }
+  10%  { opacity: 0.85; }
+  90%  { opacity: 0.6; }
+  100% { transform: translateY(110vh)  translateX(var(--drift, 0px)) rotate(calc(var(--rotate, 0deg) + 720deg)); opacity: 0; }
+}
+
 /* Gradient text */
 .gradient-text {
   background: linear-gradient(135deg, #f97316, #fb923c, #fbbf24);
