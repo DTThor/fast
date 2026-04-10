@@ -54,23 +54,28 @@ export default function HealthStageBar({ elapsedMs, targetMs }: HealthStageBarPr
           Fasting Timeline
         </p>
         <div className="relative">
-          <div className="flex gap-1 overflow-x-auto scrollbar-hide pb-2">
+          <div className="flex gap-2 overflow-x-auto scrollbar-hide px-1 py-2">
             {relevantStages.map((stage) => {
               const reached = elapsedHours >= stage.hour;
               const isCurrent = stage === currentStage;
               return (
                 <div
                   key={stage.hour}
-                  className={`flex-shrink-0 flex flex-col items-center gap-1 px-3 py-2 rounded-xl border transition-all ${
+                  className={`flex-shrink-0 flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all ${
                     isCurrent
-                      ? 'bg-white dark:bg-slate-800 shadow-lg scale-105'
+                      ? 'bg-white dark:bg-slate-800 shadow-md'
                       : reached
                       ? 'bg-white/60 dark:bg-slate-800/60'
                       : 'bg-slate-100/60 dark:bg-slate-800/30 opacity-50'
                   }`}
                   style={{
-                    borderColor: isCurrent ? stage.color : reached ? `${stage.color}50` : 'transparent',
                     minWidth: '72px',
+                    border: isCurrent
+                      ? `2px solid ${stage.color}`
+                      : reached
+                      ? `1.5px solid ${stage.color}60`
+                      : '1.5px solid transparent',
+                    boxShadow: isCurrent ? `0 0 10px ${stage.color}40` : undefined,
                   }}
                 >
                   <span className="text-xl">{stage.icon}</span>
