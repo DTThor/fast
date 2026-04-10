@@ -13,17 +13,19 @@ function AppContent() {
   const fastingActive = !!state.currentFast;
 
   return (
-    <div className="min-h-svh bg-slate-50 dark:bg-slate-900 transition-colors">
-      {/* Main content area */}
-      <main className="max-w-lg mx-auto px-4 pt-4 pb-24">
-        {page === 'timer' && <TimerPage />}
-        {page === 'history' && <HistoryPage />}
-        {page === 'stats' && <StatsPage />}
-        {page === 'weight' && <WeightPage />}
-        {page === 'settings' && <SettingsPage />}
+    <div className="flex flex-col bg-slate-50 dark:bg-slate-900 transition-colors" style={{ height: '100dvh' }}>
+      {/* Scrollable content — fills all space above the nav */}
+      <main className="flex-1 overflow-y-auto">
+        <div className="max-w-lg mx-auto px-4 pt-4 pb-6">
+          {page === 'timer' && <TimerPage />}
+          {page === 'history' && <HistoryPage />}
+          {page === 'stats' && <StatsPage />}
+          {page === 'weight' && <WeightPage />}
+          {page === 'settings' && <SettingsPage />}
+        </div>
       </main>
 
-      {/* Bottom navigation */}
+      {/* Bottom navigation — in-flow, not fixed */}
       <BottomNav current={page} onChange={setPage} fastingActive={fastingActive} />
     </div>
   );

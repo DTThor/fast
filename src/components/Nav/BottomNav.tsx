@@ -1,5 +1,5 @@
-import React from 'react';
 import { Timer, History, BarChart2, Scale, Settings } from 'lucide-react';
+import type { FC, SVGProps } from 'react';
 import clsx from 'clsx';
 
 export type Page = 'timer' | 'history' | 'stats' | 'weight' | 'settings';
@@ -10,7 +10,7 @@ interface BottomNavProps {
   fastingActive: boolean;
 }
 
-const TABS: { id: Page; label: string; Icon: React.FC<React.SVGProps<SVGSVGElement>> }[] = [
+const TABS: { id: Page; label: string; Icon: FC<SVGProps<SVGSVGElement>> }[] = [
   { id: 'timer', label: 'Fast', Icon: Timer },
   { id: 'history', label: 'Log', Icon: History },
   { id: 'stats', label: 'Stats', Icon: BarChart2 },
@@ -20,11 +20,13 @@ const TABS: { id: Page; label: string; Icon: React.FC<React.SVGProps<SVGSVGEleme
 
 export default function BottomNav({ current, onChange, fastingActive }: BottomNavProps) {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-t border-slate-200 dark:border-slate-700/50 safe-area-inset-bottom">
-      <div className="max-w-lg mx-auto flex items-center justify-around px-2 py-2 pb-safe">
+    <nav
+      className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-t border-slate-200 dark:border-slate-700/50 flex-shrink-0"
+      style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+    >
+      <div className="max-w-lg mx-auto flex items-center justify-around px-2 py-2">
         {TABS.map(({ id, label, Icon }) => {
           const isActive = current === id;
-          const isTimer = id === 'timer';
           return (
             <button
               key={id}
@@ -38,8 +40,7 @@ export default function BottomNav({ current, onChange, fastingActive }: BottomNa
             >
               <div className="relative">
                 <Icon className={clsx('w-5 h-5', isActive && 'stroke-[2.5]')} />
-                {/* Fasting dot indicator on Timer tab */}
-                {isTimer && fastingActive && (
+                {id === 'timer' && fastingActive && (
                   <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                 )}
               </div>
