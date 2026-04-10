@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Play, Square, X, Droplets, ChevronDown, Pencil, Check } from 'lucide-react';
+import { Play, Square, Droplets, ChevronDown, Pencil, Check } from 'lucide-react';
 import { useApp } from '../../store/AppContext';
 import CircularTimer from './CircularTimer';
 import HealthStageBar from './HealthStageBar';
@@ -10,7 +10,7 @@ import type { FastingProtocolId } from '../../types';
 import clsx from 'clsx';
 
 export default function TimerPage() {
-  const { state, startFast, endFast, cancelFast, dispatch } = useApp();
+  const { state, startFast, endFast, dispatch } = useApp();
   const { currentFast, settings, waterLog } = state;
   const [now, setNow] = useState(Date.now());
   const [showEndModal, setShowEndModal] = useState(false);
@@ -191,12 +191,6 @@ export default function TimerPage() {
             >
               <Square className="w-5 h-5 fill-current" />
               End Fast
-            </button>
-            <button
-              onClick={() => { if (window.confirm('Cancel this fast? Progress will not be saved.')) cancelFast(); }}
-              className="px-4 py-4 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-bold rounded-2xl transition-all active:scale-95"
-            >
-              <X className="w-5 h-5" />
             </button>
           </>
         )}
