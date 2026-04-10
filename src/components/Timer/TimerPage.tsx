@@ -3,6 +3,7 @@ import { Play, Square, X, Droplets, ChevronDown, Pencil, Check } from 'lucide-re
 import { useApp } from '../../store/AppContext';
 import CircularTimer from './CircularTimer';
 import HealthStageBar from './HealthStageBar';
+import StartTimePicker from './StartTimePicker';
 import { FASTING_PROTOCOLS, getProtocol } from '../../utils/protocols';
 import { formatDateTime, formatTime } from '../../utils/format';
 import type { FastingProtocolId } from '../../types';
@@ -17,27 +18,17 @@ export default function TimerPage() {
   const [selectedProtocol, setSelectedProtocol] = useState<FastingProtocolId>(settings.defaultProtocol);
   const [note, setNote] = useState('');
   const [editingStart, setEditingStart] = useState(false);
-  const [editStartValue, setEditStartValue] = useState('');
+  const [editStartValue, setEditStartValue] = useState(Date.now());
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  // Format a timestamp as a local datetime-local input value
-  function toDatetimeLocal(ts: number): string {
-    const d = new Date(ts);
-    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
-    return d.toISOString().slice(0, 16);
-  }
 
   function openEditStart() {
     if (!currentFast) return;
-    setEditStartValue(toDatetimeLocal(currentFast.startTime));
+    setEditStartValue(currentFast.startTime);
     setEditingStart(true);
   }
 
   function saveEditStart() {
-    const ts = new Date(editStartValue).getTime();
-    if (!isNaN(ts) && ts < Date.now()) {
-      dispatch({ type: 'UPDATE_CURRENT_START', payload: ts });
-    }
+    dispatch({ type: 'UPDATE_CURRENT_START', payload: editStartValue });
     setEditingStart(false);
   }
 
@@ -104,26 +95,23 @@ export default function TimerPage() {
           </div>
         )}
         {currentFast && editingStart && (
-          <div className="flex items-center justify-center gap-2 mt-2">
-            <input
-              type="datetime-local"
-              value={editStartValue}
-              max={toDatetimeLocal(Date.now())}
-              onChange={(e) => setEditStartValue(e.target.value)}
-              className="text-sm px-3 py-1.5 rounded-xl bg-white dark:bg-slate-800 border border-orange-300 dark:border-orange-700 text-slate-800 dark:text-white outline-none focus:ring-2 focus:ring-orange-500"
-            />
-            <button
-              onClick={saveEditStart}
-              className="p-1.5 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-colors"
-            >
-              <Check className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => setEditingStart(false)}
-              className="p-1.5 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-600 dark:text-slate-300 rounded-lg transition-colors"
-            >
-              <X className="w-4 h-4" />
-            </button>
+          <div className="flex flex-col items-center gap-3 mt-2">
+            <StartTimePicker initialValue={editStartValue} onChange={setEditStartValue} />
+            <div className="flex gap-2">
+              <button
+                onClick={() => setEditingStart(false)}
+                className="px-4 py-2 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-xl text-sm font-medium transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={saveEditStart}
+                className="px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-xl text-sm font-bold flex items-center gap-1.5 transition-colors"
+              >
+                <Check className="w-4 h-4" />
+                Save
+              </button>
+            </div>
           </div>
         )}
       </div>

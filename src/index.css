@@ -15,6 +15,13 @@
   #root {
     min-height: 100svh;
   }
+  /* Drum picker fade mask colors */
+  :root {
+    --drum-mask: #ffffff;
+  }
+  .dark {
+    --drum-mask: #1e293b;
+  }
 }
 
 @layer utilities {
