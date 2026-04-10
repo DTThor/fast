@@ -13,7 +13,10 @@ function AppContent() {
   const fastingActive = !!state.currentFast;
 
   return (
-    <div className="flex flex-col bg-slate-50 dark:bg-slate-900 transition-colors" style={{ height: '100dvh' }}>
+    <div
+      className="flex flex-col bg-slate-50 dark:bg-slate-900 transition-colors"
+      style={{ height: '100dvh', paddingTop: 'env(safe-area-inset-top)' }}
+    >
       {/* Scrollable content — fills all space above the nav */}
       <main className="flex-1 overflow-y-auto">
         <div className="max-w-lg mx-auto px-4 pt-4 pb-6">
