@@ -122,10 +122,10 @@ export default function StatsPage() {
                 labelStyle={{ color: '#94a3b8' }}
                 formatter={(v) => [`${v}h`, 'Duration']}
               />
-              <ReferenceLine y={16} stroke="#6366f1" strokeDasharray="4 4" strokeWidth={1.5} />
+              <ReferenceLine y={16} stroke="#f97316" strokeDasharray="4 4" strokeWidth={1.5} />
               <Bar dataKey="hours" radius={[4, 4, 0, 0]} maxBarSize={32}>
                 {fastData.map((d, i) => (
-                  <Cell key={i} fill={d.completed ? '#6366f1' : '#94a3b8'} fillOpacity={0.85} />
+                  <Cell key={i} fill={d.completed ? '#f97316' : '#94a3b8'} fillOpacity={0.85} />
                 ))}
               </Bar>
             </BarChart>
@@ -156,9 +156,9 @@ export default function StatsPage() {
               <Line
                 type="monotone"
                 dataKey="weight"
-                stroke="#a855f7"
+                stroke="#f97316"
                 strokeWidth={2.5}
-                dot={{ fill: '#a855f7', r: 3 }}
+                dot={{ fill: '#f97316', r: 3 }}
                 activeDot={{ r: 5 }}
               />
             </LineChart>
@@ -182,7 +182,7 @@ export default function StatsPage() {
                 <span className="text-sm font-medium text-slate-700 dark:text-slate-300 w-16 flex-shrink-0">{p.name}</span>
                 <div className="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-indigo-400 rounded-full transition-all duration-500"
+                    className="h-full bg-orange-400 rounded-full transition-all duration-500"
                     style={{ width: `${p.pct}%` }}
                   />
                 </div>

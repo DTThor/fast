@@ -113,7 +113,7 @@ export default function TimerPage() {
                   onClick={() => { setSelectedProtocol(p.id); setShowProtocols(false); }}
                   className={clsx(
                     'w-full flex items-center justify-between px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors text-left border-b border-slate-100 dark:border-slate-700 last:border-0',
-                    selectedProtocol === p.id && 'bg-indigo-50 dark:bg-indigo-900/20'
+                    selectedProtocol === p.id && 'bg-orange-50 dark:bg-orange-900/20'
                   )}
                 >
                   <div>
@@ -135,7 +135,7 @@ export default function TimerPage() {
         {!currentFast ? (
           <button
             onClick={handleStart}
-            className="flex-1 flex items-center justify-center gap-2 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-bold rounded-2xl shadow-lg shadow-indigo-500/30 transition-all active:scale-95"
+            className="flex-1 flex items-center justify-center gap-2 py-4 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold rounded-2xl shadow-lg shadow-orange-500/30 transition-all active:scale-95"
           >
             <Play className="w-5 h-5 fill-current" />
             Start Fast
@@ -144,7 +144,7 @@ export default function TimerPage() {
           <>
             <button
               onClick={() => setShowEndModal(true)}
-              className="flex-1 flex items-center justify-center gap-2 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-bold rounded-2xl shadow-lg shadow-indigo-500/30 transition-all active:scale-95"
+              className="flex-1 flex items-center justify-center gap-2 py-4 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold rounded-2xl shadow-lg shadow-orange-500/30 transition-all active:scale-95"
             >
               <Square className="w-5 h-5 fill-current" />
               End Fast
@@ -208,7 +208,7 @@ export default function TimerPage() {
               value={note}
               onChange={(e) => setNote(e.target.value)}
               placeholder="Add a note (optional)..."
-              className="w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-white placeholder:text-slate-400 text-sm resize-none border-none outline-none focus:ring-2 focus:ring-indigo-500 mb-4"
+              className="w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-white placeholder:text-slate-400 text-sm resize-none border-none outline-none focus:ring-2 focus:ring-orange-500 mb-4"
               rows={3}
             />
             <div className="flex gap-3">
@@ -220,7 +220,7 @@ export default function TimerPage() {
               </button>
               <button
                 onClick={handleEnd}
-                className="flex-1 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/30"
+                className="flex-1 py-3 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold rounded-xl shadow-lg shadow-orange-500/30"
               >
                 End Fast
               </button>

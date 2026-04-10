@@ -62,7 +62,7 @@ export default function WeightPage() {
         </div>
         <button
           onClick={() => setShowAdd(!showAdd)}
-          className="flex items-center gap-1.5 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl font-medium text-sm transition-colors shadow-sm"
+          className="flex items-center gap-1.5 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-medium text-sm transition-colors shadow-sm"
         >
           <Plus className="w-4 h-4" />
           Log Weight
@@ -113,7 +113,7 @@ export default function WeightPage() {
 
       {/* Add weight form */}
       {showAdd && (
-        <div className="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-indigo-200 dark:border-indigo-800">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-orange-200 dark:border-orange-800">
           <h3 className="font-semibold text-slate-800 dark:text-white mb-3">Log Weight</h3>
           <div className="flex gap-2 mb-3">
             <input
@@ -123,7 +123,7 @@ export default function WeightPage() {
               value={inputWeight}
               onChange={(e) => setInputWeight(e.target.value)}
               placeholder="Weight"
-              className="flex-1 px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-white placeholder:text-slate-400 text-sm border-none outline-none focus:ring-2 focus:ring-indigo-500"
+              className="flex-1 px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-white placeholder:text-slate-400 text-sm border-none outline-none focus:ring-2 focus:ring-orange-500"
               autoFocus
             />
             <div className="flex gap-1 bg-slate-100 dark:bg-slate-700 rounded-xl p-1">
@@ -147,7 +147,7 @@ export default function WeightPage() {
             value={inputNote}
             onChange={(e) => setInputNote(e.target.value)}
             placeholder="Note (optional)"
-            className="w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-white placeholder:text-slate-400 text-sm border-none outline-none focus:ring-2 focus:ring-indigo-500 mb-3"
+            className="w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-white placeholder:text-slate-400 text-sm border-none outline-none focus:ring-2 focus:ring-orange-500 mb-3"
           />
           <div className="flex gap-2">
             <button
@@ -159,7 +159,7 @@ export default function WeightPage() {
             <button
               onClick={handleAdd}
               disabled={!inputWeight}
-              className="flex-1 py-2.5 bg-indigo-500 disabled:bg-indigo-300 text-white rounded-xl text-sm font-bold transition-colors"
+              className="flex-1 py-2.5 bg-orange-500 disabled:bg-orange-300 text-white rounded-xl text-sm font-bold transition-colors"
             >
               Save
             </button>

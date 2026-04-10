@@ -52,7 +52,7 @@ export default function HistoryPage() {
           value={`${completedFasts.length} / ${fastHistory.length}`}
         />
         <StatCard
-          icon={<Calendar className="w-5 h-5 text-indigo-500" />}
+          icon={<Calendar className="w-5 h-5 text-orange-500" />}
           label="Avg Fast"
           value={avgFastHours > 0 ? `${avgFastHours.toFixed(1)}h` : '—'}
         />
@@ -60,10 +60,10 @@ export default function HistoryPage() {
 
       {/* Current fast (if running) */}
       {currentFast && (
-        <div className="bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800 rounded-2xl p-4">
+        <div className="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-2xl p-4">
           <div className="flex items-center gap-2 mb-1">
-            <span className="w-2 h-2 bg-indigo-500 rounded-full animate-pulse" />
-            <span className="text-sm font-semibold text-indigo-700 dark:text-indigo-400">Currently Fasting</span>
+            <span className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
+            <span className="text-sm font-semibold text-orange-700 dark:text-orange-400">Currently Fasting</span>
           </div>
           <p className="text-sm text-slate-600 dark:text-slate-400">
             Started {formatDateTime(currentFast.startTime)}
@@ -117,7 +117,7 @@ export default function HistoryPage() {
                     {/* Progress bar */}
                     <div className="h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
                       <div
-                        className={clsx('h-full rounded-full transition-all', fast.completed ? 'bg-green-400' : 'bg-indigo-400')}
+                        className={clsx('h-full rounded-full transition-all', fast.completed ? 'bg-green-400' : 'bg-orange-400')}
                         style={{ width: `${pct}%` }}
                       />
                     </div>

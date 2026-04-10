@@ -33,8 +33,8 @@ export default function CircularTimer({
   const elapsedHours = elapsedMs / 3600000;
 
   // Color based on progress
-  let strokeColor = '#6366f1';
-  if (progress > 0.75) strokeColor = '#a855f7';
+  let strokeColor = '#f97316';
+  if (progress > 0.75) strokeColor = '#fb923c';
   if (progress >= 1) strokeColor = '#22c55e';
 
   // Gradient id unique to avoid conflicts
@@ -45,9 +45,9 @@ export default function CircularTimer({
       <svg width={size} height={size} className="-rotate-90">
         <defs>
           <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#6366f1" />
-            <stop offset="50%" stopColor="#8b5cf6" />
-            <stop offset="100%" stopColor={overTarget ? '#22c55e' : '#ec4899'} />
+            <stop offset="0%" stopColor="#f97316" />
+            <stop offset="50%" stopColor="#fb923c" />
+            <stop offset="100%" stopColor={overTarget ? '#22c55e' : '#fbbf24'} />
           </linearGradient>
         </defs>
         {/* Background track */}

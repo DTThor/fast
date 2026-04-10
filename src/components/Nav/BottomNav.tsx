@@ -32,7 +32,7 @@ export default function BottomNav({ current, onChange, fastingActive }: BottomNa
               className={clsx(
                 'flex flex-col items-center gap-0.5 px-3 py-2 rounded-xl transition-all relative',
                 isActive
-                  ? 'text-indigo-600 dark:text-indigo-400'
+                  ? 'text-orange-500 dark:text-orange-400'
                   : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'
               )}
             >
@@ -47,7 +47,7 @@ export default function BottomNav({ current, onChange, fastingActive }: BottomNa
                 {label}
               </span>
               {isActive && (
-                <span className="absolute top-0.5 left-1/2 -translate-x-1/2 w-1 h-1 bg-indigo-500 rounded-full" />
+                <span className="absolute top-0.5 left-1/2 -translate-x-1/2 w-1 h-1 bg-orange-500 rounded-full" />
               )}
             </button>
           );

@@ -26,7 +26,7 @@ export default function SettingsPage() {
       </div>
 
       {/* Profile summary */}
-      <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl p-5 text-white shadow-lg">
+      <div className="bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl p-5 text-white shadow-lg">
         <div className="flex items-center gap-3 mb-4">
           <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-2xl">
             🧑‍💪
@@ -58,7 +58,7 @@ export default function SettingsPage() {
               className={clsx(
                 'w-full flex items-center justify-between px-4 py-3 rounded-xl border transition-all text-left',
                 settings.defaultProtocol === p.id
-                  ? 'bg-indigo-50 dark:bg-indigo-900/20 border-indigo-300 dark:border-indigo-700'
+                  ? 'bg-orange-50 dark:bg-orange-900/20 border-orange-300 dark:border-orange-700'
                   : 'bg-slate-50 dark:bg-slate-700/30 border-transparent'
               )}
             >
@@ -67,7 +67,7 @@ export default function SettingsPage() {
                 <p className="text-xs text-slate-400">{p.fastHours}h fast · {p.description.split('.')[0]}</p>
               </div>
               {settings.defaultProtocol === p.id && (
-                <span className="w-5 h-5 bg-indigo-500 rounded-full flex items-center justify-center">
+                <span className="w-5 h-5 bg-orange-500 rounded-full flex items-center justify-center">
                   <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                   </svg>
@@ -81,7 +81,7 @@ export default function SettingsPage() {
             <div className="px-4 py-3 bg-slate-50 dark:bg-slate-700/30 rounded-xl">
               <div className="flex justify-between mb-2">
                 <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Custom fast duration</span>
-                <span className="text-sm font-bold text-indigo-500">{settings.customFastHours}h</span>
+                <span className="text-sm font-bold text-orange-500">{settings.customFastHours}h</span>
               </div>
               <input
                 type="range"
@@ -90,7 +90,7 @@ export default function SettingsPage() {
                 step={1}
                 value={settings.customFastHours}
                 onChange={(e) => update('customFastHours', Number(e.target.value))}
-                className="w-full accent-indigo-500"
+                className="w-full accent-orange-500"
               />
               <div className="flex justify-between text-xs text-slate-400 mt-1">
                 <span>4h</span>
@@ -115,7 +115,7 @@ export default function SettingsPage() {
               className={clsx(
                 'flex-1 flex flex-col items-center gap-1.5 py-3 rounded-xl border text-sm font-medium transition-all',
                 settings.theme === opt.value
-                  ? 'bg-indigo-50 dark:bg-indigo-900/20 border-indigo-400 text-indigo-600 dark:text-indigo-400'
+                  ? 'bg-orange-50 dark:bg-orange-900/20 border-orange-400 text-orange-600 dark:text-orange-400'
                   : 'bg-slate-50 dark:bg-slate-700/30 border-transparent text-slate-600 dark:text-slate-400'
               )}
             >
@@ -136,7 +136,7 @@ export default function SettingsPage() {
               className={clsx(
                 'flex-1 py-3 rounded-xl border text-sm font-semibold transition-all',
                 settings.weightUnit === unit
-                  ? 'bg-indigo-50 dark:bg-indigo-900/20 border-indigo-400 text-indigo-600 dark:text-indigo-400'
+                  ? 'bg-orange-50 dark:bg-orange-900/20 border-orange-400 text-orange-600 dark:text-orange-400'
                   : 'bg-slate-50 dark:bg-slate-700/30 border-transparent text-slate-600 dark:text-slate-400'
               )}
             >
