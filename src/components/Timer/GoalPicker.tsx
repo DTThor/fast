@@ -7,16 +7,14 @@ interface GoalPickerProps {
 }
 
 const DAYS = Array.from({ length: 31 }, (_, i) => `${i}d`);
-const HOURS = Array.from({ length: 12 }, (_, i) => `${i + 12}h`); // 12–23
+const HOURS = Array.from({ length: 24 }, (_, i) => `${i}h`); // 0–23
 
 function decompose(totalHours: number) {
   const days = Math.floor(totalHours / 24);
   const hours = totalHours % 24;
-  // Clamp hours into 12–23 range
-  const clampedHours = Math.max(12, Math.min(23, hours));
   return {
     dayIdx: Math.max(0, Math.min(days, 30)),
-    hourIdx: clampedHours - 12,
+    hourIdx: Math.max(0, Math.min(hours, 23)),
   };
 }
 
@@ -26,7 +24,7 @@ export default function GoalPicker({ targetHours, onChange }: GoalPickerProps) {
   const [hourIdx, setHourIdx] = useState(init.hourIdx);
 
   function update(newDayIdx: number, newHourIdx: number) {
-    const total = newDayIdx * 24 + (newHourIdx + 12);
+    const total = newDayIdx * 24 + newHourIdx;
     onChange(total);
   }
 
